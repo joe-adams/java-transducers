@@ -12,24 +12,24 @@ import java.util.function.Function;
 
 
 
-public class Mapper<V,R> implements BiFunction<V,Collection<R>,Collection<R>>  {
-    private final Reducer<R> reducer;
-    private final Function<V,R> mapping;
+public class Mapper<V,I,R> implements Reducer<V,R>  {
+    private final Reducer<I,R> reducer;
+    private final Function<V,I> mapping;
 
-    public Mapper(Reducer<R> reducer, Function<V, R> mapping) {
+    public Mapper(Reducer<I,R> reducer, Function<V, I> mapping) {
         this.reducer = reducer;
         this.mapping = mapping;
     }
 
     @Override
-    public Collection<R> apply(V t, Collection<R> u) {
-        R added=mapping.apply(t);
-        Collection<R> result=reducer.apply(added, u);
+    public R apply(V t, R u) {
+        I added=mapping.apply(t);
+        R result=reducer.apply(added, u);
         return result;
     }
     
-    public static <V,R> Function<Reducer<R>,Mapper<V,R>> curryMapping(Function<V,R> mapping){
-        return (Reducer<R> reducer) ->new Mapper<>(reducer,mapping);
+    public static <V,I,R> Function<Reducer<I,R>,Mapper<V,I,R>> curryMapping(Function<V,I> mapping){
+        return (Reducer<I,R> reducer) ->new Mapper<V,I,R>(reducer,mapping);
     }
 
 }

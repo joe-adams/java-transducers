@@ -15,6 +15,6 @@ import java.util.function.Function;
  * @author Joe
  * @param <R>
  */
-public interface Reducer<R> extends BiFunction<R,Collection<R>,Collection<R>> {
+public interface Reducer<V,R> extends BiFunction<V,R,R> {
 
 }

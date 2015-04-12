@@ -14,17 +14,11 @@ import java.util.function.Function;
 
 public class Transducers {
     
-    public static <V,R> R reduce(Collection<V> values, BiFunction<V,R,R> reducer, R base) {
+    public static <V,R> R reduce(Collection<V> values, Reducer<V,R> reducer, R base) {
         R result=base;
         for(V value:values){
             result=reducer.apply(value, result);
         }
         return result;
-    }
-    
-
-    
-    
-    
-    
+    }  
 }

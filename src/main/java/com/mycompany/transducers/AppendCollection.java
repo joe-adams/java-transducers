@@ -11,8 +11,10 @@ import java.util.Collection;
 /**
  *
  * @author Joe
+ * @param <R>
  */
-public class AppendCollection<R> implements Reducer<R>{
+public class AppendCollection<R> implements Reducer<R,Collection<R>>{
+    
 
     @Override
     public Collection<R> apply(R t, Collection<R> u) {
