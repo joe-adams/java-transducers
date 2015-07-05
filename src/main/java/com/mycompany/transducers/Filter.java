@@ -6,14 +6,13 @@
 
 package com.mycompany.transducers;
 
-import java.util.Collection;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
  *
  * @author Joe
+ * @param <V>
  * @param <R>
  */
 public class Filter<V,R> implements Reducer<V,R>{
